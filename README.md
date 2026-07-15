@@ -1,94 +1,135 @@
-# Toko Kopi - Aplikasi Pelanggan
+# ☕ Kedai Kopi Senja - Aplikasi Pelanggan
 
-Ini adalah aplikasi untuk pengguna/pelanggan Toko Kopi. Aplikasi ini digunakan pelanggan untuk melihat menu dan melakukan pemesanan/reservasi tempat.
-
-## Cara Instalasi
-
-Ikuti langkah-langkah berikut untuk menginstall dan menjalankan aplikasi:
-
-1. **Clone Repository**
-
-   ```bash
-   git clone https://github.com/Nardo4577/toko_kopi_user.git
-   cd toko_kopi_user
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   composer install
-   ```
-
-## Konfigurasi `.env`
-
-File `.env` tidak disertakan di GitHub karena berisi API Key dan konfigurasi database. Anda harus membuatnya secara manual.
-
-- Salin file `.env.example` dan ubah namanya menjadi `.env`:
-  ```bash
-  cp .env.example .env
-  ```
-- Buka file `.env` dan atur konfigurasi database serta API yang digunakan (Midtrans & Google Calendar):
-
-  ```env
-  database.tests.database = toko_kopi
-  database.tests.username = root
-  database.tests.password =
-
-  MIDTRANS_SERVER_KEY="server_key_anda"
-  MIDTRANS_CLIENT_KEY="client_key_anda"
-  GOOGLE_CLIENT_ID="google_client_id_anda"
-  GOOGLE_CLIENT_SECRET="google_client_secret_anda"
-  ```
-
-## Migrations dan Seeder
-
-Pastikan Anda sudah memiliki database `toko_kopi` (bisa berbagi dengan admin). Jika Anda belum menjalankan seeder untuk user, Anda bisa menjalankannya:
-
-```bash
-php spark migrate --all
-php spark db:seed App\\Database\\Seeds\\UserSeeder
-```
-
-## Akun Demo Pelanggan
-
-Gunakan akun berikut untuk login sebagai pelanggan:
-
-- **Username**: `andi`
-- **Password**: `user123`
-
-Disarankan buat username baru dapat klik tombol login -> klik daftar sekarang
-
-- buat username baru sesuai yang diinginkan
-- masukan email yang aktif agar bisa testing untuk notifikasi email reservasi dan Midtrans
-- masukan password yang diinginkan
-
-- login kembali menggunakan username dan password yang barusan dibuat
+Ini adalah repositori untuk sisi **Pelanggan (User)** dari sistem informasi Kedai Kopi Senja. Aplikasi ini dirancang agar pelanggan dapat dengan mudah melihat katalog menu, melakukan pemesanan, dan membuat reservasi tempat secara _online_ yang terintegrasi dengan berbagai layanan pihak ketiga.
 
 ---
 
-## Screenshot Fitur Utama
+## ✨ Fitur Utama
 
-_(Ganti teks dan path gambar di bawah ini dengan screenshot aplikasi Anda yang sebenarnya)_
+- Katalog Menu interaktif.
+- Sistem Reservasi Tempat terintegrasi Google Calendar.
+- Pembayaran _Online_ (Payment Gateway) menggunakan Midtrans.
+- Notifikasi pemesanan dan pembayaran via Email (SMTP).
 
-### Halaman Home / Menu
+---
+
+## 🚀 Cara Instalasi
+
+Ikuti panduan berikut untuk menjalankan proyek ini di _local environment_ Anda:
+
+### 1. Persiapan Repositori
+
+Lakukan _clone repository_ ini ke direktori lokal Anda:
+` ` `bash
+git clone https://github.com/Nardo4577/toko_kopi_user.git
+cd toko_kopi_user
+` ` `
+
+### 2. Instalasi Dependensi
+
+Pastikan Anda sudah menginstal Composer. Jalankan perintah berikut untuk mengunduh semua _library_ yang dibutuhkan (termasuk _library shopping cart_ CodeIgniter 4):
+` ` `bash
+composer install
+` ` `
+
+---
+
+## ⚙️ Konfigurasi Lingkungan (`.env`)
+
+Untuk alasan keamanan, _file_ `.env` tidak disertakan di GitHub. Anda harus mengaturnya secara manual.
+
+1. Salin _file_ _template_ lingkungan dan ubah namanya menjadi `.env`:
+   ` ` `bash
+cp env.example .env
+` ` `
+2. Buka _file_ `.env` dan atur konfigurasi berikut dengan kredensial milik Anda:
+
+**Pengaturan Database**
+` ` `env
+database.default.database = toko_kopi
+database.default.username = root
+database.default.password = 
+` ` `
+
+**Pengaturan SMTP (Notifikasi Email)**
+` ` `env
+email.protocol   = 'smtp'
+email.SMTPHost   = 'smtp.gmail.com'
+email.SMTPUser   = 'senjakopi3521@gmail.com'
+email.SMTPPass   = '<MASUKKAN_APP_PASSWORD_GMAIL_ANDA_DI_SINI>'
+email.SMTPPort   = 465
+email.SMTPCrypto = 'ssl'
+email.mailType   = 'html'
+` ` `
+
+**Pengaturan Payment Gateway (Midtrans Sandbox)**
+` ` `env
+MIDTRANS_SERVER_KEY="<MASUKKAN_SERVER_KEY_MIDTRANS_ANDA>"
+MIDTRANS_CLIENT_KEY="<MASUKKAN_CLIENT_KEY_MIDTRANS_ANDA>"
+MIDTRANS_IS_PRODUCTION=false
+` ` `
+
+**Pengaturan Google Calendar API**
+` ` `env
+GOOGLE_CLIENT_ID="<MASUKKAN_GOOGLE_CLIENT_ID_ANDA>"
+GOOGLE_CLIENT_SECRET="<MASUKKAN_GOOGLE_CLIENT_SECRET_ANDA>"
+GOOGLE_REDIRECT_URI="https://kopisenja-user.infinityfreeapp.com/google-calendar/callback"
+` ` `
+
+---
+
+## 🗄️ Database Migrations & Seeder
+
+Pastikan Anda sudah membuat _database_ kosong dengan nama `toko_kopi` di MySQL/phpMyAdmin Anda (_database_ ini berbagi (_shared_) dengan aplikasi Admin).
+
+Untuk membuat struktur tabel dan mengisi data awal (_dummy_), jalankan perintah berikut di terminal:
+` ` `bash
+php spark migrate
+php spark db:seed App\Database\Seeds\UserSeeder
+` ` `
+
+---
+
+## 🔐 Akun Demo & Skenario Pengujian
+
+Jika Anda ingin langsung menguji aplikasi tanpa mendaftar, gunakan akun _dummy_ berikut:
+
+- **Username:** `andi`
+- **Password:** `user123`
+
+> **💡 Rekomendasi Pengujian Menyeluruh:**
+> Untuk memastikan notifikasi _email_, konfirmasi Midtrans, dan API kalender berjalan normal, **disarankan untuk membuat akun baru**.
+>
+> 1. Klik menu **Login** -> **Daftar Sekarang**.
+> 2. Masukkan **Email Aktif** Anda agar notifikasi SMTP bisa masuk ke _inbox_.
+> 3. Lakukan _login_ menggunakan akun yang baru saja dibuat dan cobalah membuat reservasi.
+
+---
+
+## 📸 Tampilan Antarmuka (Screenshots)
+
+Berikut adalah beberapa pratinjau dari antarmuka dan fitur aplikasi:
+
+### Halaman Utama (Katalog Menu)
 
 ![Halaman Utama](dashboard_user.jpeg)
 
-### Halaman After Pemesanan / Reservasi
+### Detail Setelah Pemesanan / Reservasi
 
 ![Pemesanan](tampilan_after_reservasi.jpeg)
 
-### Halaman Transaksi Payment Midtrans
+### Integrasi Pembayaran (Midtrans)
 
 ![Pemesanan](payment.jpeg)
 
-### Halaman google calendar
+### Sinkronisasi Google Calendar
 
 ![Pemesanan](google_calendar.jpeg)
 
-### Halaman Notifikasi Email Reservasi
+### Bukti Notifikasi Email Reservasi
 
 ![Pemesanan](email_reservasi.jpeg)
 
-### Halaman Notifikasi Email Transaksi Pembayaran
+### Bukti Notifikasi Email Transaksi Pembayaran
 
 ![Pemesanan](email_pembayaran.jpeg)
