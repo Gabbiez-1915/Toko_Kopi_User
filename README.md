@@ -1,58 +1,65 @@
-<<<<<<< HEAD
+# Toko Kopi - Aplikasi Pelanggan
 
-# Kopi Senja - User Frontend
+Ini adalah aplikasi untuk pengguna/pelanggan Toko Kopi. Aplikasi ini digunakan pelanggan untuk melihat menu dan melakukan pemesanan/reservasi tempat.
 
-Aplikasi frontend untuk pelanggan Kopi Senja. Melalui aplikasi ini, pelanggan dapat melihat menu, melakukan reservasi meja, memesan secara online, dan memberikan ulasan. Dibangun menggunakan CodeIgniter 4.
+## Cara Instalasi
 
-## 🚀 Fitur Utama
+Ikuti langkah-langkah berikut untuk menginstall dan menjalankan aplikasi:
 
-- **Lihat Menu**: Menampilkan menu kopi dan makanan beserta kategori dan harga.
-- **Reservasi Meja**: Booking meja untuk waktu tertentu.
-- **Pemesanan Online**: Memesan menu secara langsung.
-- **Ulasan Pelanggan**: Memberikan rating dan komentar setelah kunjungan.
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/Nardo4577/toko_kopi_user.git
+   cd toko_kopi_user
+   ```
 
-## 📋 Cara Install
-
-1. **Clone repository ini**
-   Pastikan Anda telah menginstal Git, kemudian clone ke folder web server Anda (contoh: `htdocs` untuk XAMPP atau `www` untuk WAMP).
-
-2. **Install Dependensi dengan Composer**
-   Buka terminal/command prompt di direktori project, lalu jalankan:
-
+2. **Install Dependencies**
    ```bash
    composer install
    ```
 
-3. **Konfigurasi Environment**
-   - Copy file `env` menjadi `.env`.
-   - Buka file `.env` dan ubah environment menjadi development:
-     ```env
-     CI_ENVIRONMENT = development
-     ```
-   - Konfigurasi koneksi database Anda di bagian `database.default` agar sama dengan database Admin:
-     ```env
-     database.default.hostname = localhost
-     database.default.database = nama_database_kopi_senja
-     database.default.username = root
-     database.default.password =
-     database.default.DBDriver = MySQLi
-     ```
+## Konfigurasi `.env`
 
-4. **Jalankan Server Lokal**
-   Gunakan server bawaan CodeIgniter untuk menjalankan aplikasi:
+File `.env` tidak disertakan di GitHub karena berisi API Key dan konfigurasi database. Anda harus membuatnya secara manual.
 
-   ```bash
-   php spark serve --port 8081
-   ```
+- Salin file `.env.example` dan ubah namanya menjadi `.env`:
+  ```bash
+  cp .env.example .env
+  ```
+- Buka file `.env` dan atur konfigurasi database serta API yang digunakan (Midtrans & Google Calendar):
+  ```env
+  database.tests.database = toko_kopi
+  database.tests.username = root
+  database.tests.password = 
+  
+  MIDTRANS_SERVER_KEY="server_key_anda"
+  MIDTRANS_CLIENT_KEY="client_key_anda"
+  GOOGLE_CLIENT_ID="google_client_id_anda"
+  GOOGLE_CLIENT_SECRET="google_client_secret_anda"
+  ```
 
-   _Catatan: Port diubah ke 8081 jika port 8080 sedang digunakan oleh aplikasi Admin._
+## Migrations dan Seeder
 
-   Aplikasi dapat diakses melalui browser di alamat: `http://localhost:8081`
+Pastikan Anda sudah memiliki database `toko_kopi` (bisa berbagi dengan admin). Jika Anda belum menjalankan seeder untuk user, Anda bisa menjalankannya:
+
+```bash
+php spark migrate --all
+php spark db:seed App\\Database\\Seeds\\UserSeeder
+```
+
+## Akun Demo Pelanggan
+
+Gunakan akun berikut untuk login sebagai pelanggan:
+- **Username**: `budi_santoso` / **Email**: `budi@gmail.com`
+- **Password**: `user123`
 
 ---
 
-# _Dibuat menggunakan CodeIgniter 4_
+## Screenshot Fitur Utama
 
-# Toko_Kopi_User
+*(Ganti teks dan path gambar di bawah ini dengan screenshot aplikasi Anda yang sebenarnya)*
 
-> > > > > > > 1f731ccbd55e6e57470fea786855465ccfe6c7d1
+### Halaman Home / Menu
+![Halaman Utama](user-home.png)
+
+### Halaman Pemesanan / Reservasi
+![Pemesanan](reservasi.png)
