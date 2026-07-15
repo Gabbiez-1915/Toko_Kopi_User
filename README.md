@@ -1,8 +1,11 @@
+<<<<<<< HEAD
+
 # Kopi Senja - User Frontend
 
 Aplikasi frontend untuk pelanggan Kopi Senja. Melalui aplikasi ini, pelanggan dapat melihat menu, melakukan reservasi meja, memesan secara online, dan memberikan ulasan. Dibangun menggunakan CodeIgniter 4.
 
 ## 🚀 Fitur Utama
+
 - **Lihat Menu**: Menampilkan menu kopi dan makanan beserta kategori dan harga.
 - **Reservasi Meja**: Booking meja untuk waktu tertentu.
 - **Pemesanan Online**: Memesan menu secara langsung.
@@ -15,6 +18,7 @@ Aplikasi frontend untuk pelanggan Kopi Senja. Melalui aplikasi ini, pelanggan da
 
 2. **Install Dependensi dengan Composer**
    Buka terminal/command prompt di direktori project, lalu jalankan:
+
    ```bash
    composer install
    ```
@@ -30,18 +34,25 @@ Aplikasi frontend untuk pelanggan Kopi Senja. Melalui aplikasi ini, pelanggan da
      database.default.hostname = localhost
      database.default.database = nama_database_kopi_senja
      database.default.username = root
-     database.default.password = 
+     database.default.password =
      database.default.DBDriver = MySQLi
      ```
 
 4. **Jalankan Server Lokal**
    Gunakan server bawaan CodeIgniter untuk menjalankan aplikasi:
+
    ```bash
    php spark serve --port 8081
    ```
-   *Catatan: Port diubah ke 8081 jika port 8080 sedang digunakan oleh aplikasi Admin.*
-   
+
+   _Catatan: Port diubah ke 8081 jika port 8080 sedang digunakan oleh aplikasi Admin._
+
    Aplikasi dapat diakses melalui browser di alamat: `http://localhost:8081`
 
 ---
-*Dibuat menggunakan CodeIgniter 4*
+
+# _Dibuat menggunakan CodeIgniter 4_
+
+# Toko_Kopi_User
+
+> > > > > > > 1f731ccbd55e6e57470fea786855465ccfe6c7d1
