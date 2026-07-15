@@ -7,6 +7,7 @@ Ini adalah aplikasi untuk pengguna/pelanggan Toko Kopi. Aplikasi ini digunakan p
 Ikuti langkah-langkah berikut untuk menginstall dan menjalankan aplikasi:
 
 1. **Clone Repository**
+
    ```bash
    git clone https://github.com/Nardo4577/toko_kopi_user.git
    cd toko_kopi_user
@@ -26,11 +27,12 @@ File `.env` tidak disertakan di GitHub karena berisi API Key dan konfigurasi dat
   cp .env.example .env
   ```
 - Buka file `.env` dan atur konfigurasi database serta API yang digunakan (Midtrans & Google Calendar):
+
   ```env
   database.tests.database = toko_kopi
   database.tests.username = root
-  database.tests.password = 
-  
+  database.tests.password =
+
   MIDTRANS_SERVER_KEY="server_key_anda"
   MIDTRANS_CLIENT_KEY="client_key_anda"
   GOOGLE_CLIENT_ID="google_client_id_anda"
@@ -49,17 +51,44 @@ php spark db:seed App\\Database\\Seeds\\UserSeeder
 ## Akun Demo Pelanggan
 
 Gunakan akun berikut untuk login sebagai pelanggan:
-- **Username**: `budi_santoso` / **Email**: `budi@gmail.com`
+
+- **Username**: `andi`
 - **Password**: `user123`
+
+Disarankan buat username baru dapat klik tombol login -> klik daftar sekarang
+
+- buat username baru sesuai yang diinginkan
+- masukan email yang aktif agar bisa testing untuk notifikasi email reservasi dan Midtrans
+- masukan password yang diinginkan
+
+- login kembali menggunakan username dan password yang barusan dibuat
 
 ---
 
 ## Screenshot Fitur Utama
 
-*(Ganti teks dan path gambar di bawah ini dengan screenshot aplikasi Anda yang sebenarnya)*
+_(Ganti teks dan path gambar di bawah ini dengan screenshot aplikasi Anda yang sebenarnya)_
 
 ### Halaman Home / Menu
-![Halaman Utama](user-home.png)
 
-### Halaman Pemesanan / Reservasi
-![Pemesanan](reservasi.png)
+![Halaman Utama](dashboard_user.jpeg)
+
+### Halaman After Pemesanan / Reservasi
+
+![Pemesanan](tampilan_after_reservasi.jpeg)
+
+### Halaman Transaksi Payment Midtrans
+
+![Pemesanan](payment.jpeg)
+
+### Halaman google calendar
+
+![Pemesanan](google_calendar.jpeg)
+
+### Halaman Notifikasi Email Reservasi
+
+![Pemesanan](email_reservasi.jpeg)
+
+### Halaman Notifikasi Email Transaksi Pembayaran
+
+![Pemesanan](email_pembayaran.jpeg)
