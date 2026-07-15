@@ -20,17 +20,19 @@ Ikuti panduan berikut untuk menjalankan proyek ini di _local environment_ Anda:
 ### 1. Persiapan Repositori
 
 Lakukan _clone repository_ ini ke direktori lokal Anda:
-` ` `bash
+
+```bash
 git clone https://github.com/Nardo4577/toko_kopi_user.git
 cd toko_kopi_user
-` ` `
+```
 
 ### 2. Instalasi Dependensi
 
 Pastikan Anda sudah menginstal Composer. Jalankan perintah berikut untuk mengunduh semua _library_ yang dibutuhkan (termasuk _library shopping cart_ CodeIgniter 4):
-` ` `bash
+
+```bash
 composer install
-` ` `
+```
 
 ---
 
@@ -39,20 +41,22 @@ composer install
 Untuk alasan keamanan, _file_ `.env` tidak disertakan di GitHub. Anda harus mengaturnya secara manual.
 
 1. Salin _file_ _template_ lingkungan dan ubah namanya menjadi `.env`:
-   ` ` `bash
-cp env.example .env
-` ` `
+   ```bash
+   cp env.example .env
+   ```
 2. Buka _file_ `.env` dan atur konfigurasi berikut dengan kredensial milik Anda:
 
 **Pengaturan Database**
-` ` `env
+
+```env
 database.default.database = toko_kopi
 database.default.username = root
-database.default.password = 
-` ` `
+database.default.password =
+```
 
 **Pengaturan SMTP (Notifikasi Email)**
-` ` `env
+
+```env
 email.protocol   = 'smtp'
 email.SMTPHost   = 'smtp.gmail.com'
 email.SMTPUser   = 'senjakopi3521@gmail.com'
@@ -60,21 +64,23 @@ email.SMTPPass   = '<MASUKKAN_APP_PASSWORD_GMAIL_ANDA_DI_SINI>'
 email.SMTPPort   = 465
 email.SMTPCrypto = 'ssl'
 email.mailType   = 'html'
-` ` `
+```
 
 **Pengaturan Payment Gateway (Midtrans Sandbox)**
-` ` `env
+
+```env
 MIDTRANS_SERVER_KEY="<MASUKKAN_SERVER_KEY_MIDTRANS_ANDA>"
 MIDTRANS_CLIENT_KEY="<MASUKKAN_CLIENT_KEY_MIDTRANS_ANDA>"
 MIDTRANS_IS_PRODUCTION=false
-` ` `
+```
 
 **Pengaturan Google Calendar API**
-` ` `env
+
+```env
 GOOGLE_CLIENT_ID="<MASUKKAN_GOOGLE_CLIENT_ID_ANDA>"
 GOOGLE_CLIENT_SECRET="<MASUKKAN_GOOGLE_CLIENT_SECRET_ANDA>"
 GOOGLE_REDIRECT_URI="https://kopisenja-user.infinityfreeapp.com/google-calendar/callback"
-` ` `
+```
 
 ---
 
@@ -83,10 +89,11 @@ GOOGLE_REDIRECT_URI="https://kopisenja-user.infinityfreeapp.com/google-calendar/
 Pastikan Anda sudah membuat _database_ kosong dengan nama `toko_kopi` di MySQL/phpMyAdmin Anda (_database_ ini berbagi (_shared_) dengan aplikasi Admin).
 
 Untuk membuat struktur tabel dan mengisi data awal (_dummy_), jalankan perintah berikut di terminal:
-` ` `bash
+
+```bash
 php spark migrate
 php spark db:seed App\Database\Seeds\UserSeeder
-` ` `
+```
 
 ---
 
